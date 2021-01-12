@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AdminLTE | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    @*<link href="~/Content/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/v4-shims.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/assets/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/Content/assets/dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="~/Content/assets/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="~/Content/assets/dist/fonts/fonts-fa.css">
+    <link rel="stylesheet" href="~/Content/assets/dist/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="~/Content/assets/dist/css/rtl.css">
+    <link href="~/Content/assets/plugins/Toaster/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+    <link href="https://goSellJSLib.b-cdn.net/v1.4.1/css/gosell.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Content/assets/imgs/logo.png">
+    <!-- summernote rich text editor -->
+    <link href="~/Content/assets/plugins/summernote-0.8.18-dist/summernote.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .select2 {
+            width: 100% !important;
+            text-align: right;
+        }
+
+        .select2-container--default {
+            text-align: right;
+        }
+    </style>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 700px;
+        }
+
+        #description {
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        #infowindow-content .title {
+            font-weight: bold;
+        }
+
+        #infowindow-content {
+            display: none;
+        }
+
+        #map #infowindow-content {
+            display: inline;
+        }
+
+        .pac-card {
+            margin: 10px 10px 0 0;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            font-family: Roboto;
+        }
+
+        #pac-container {
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        .pac-controls {
+            display: inline-block;
+            padding: 5px 11px;
+        }
+
+            .pac-controls label {
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 300;
+            }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+            #pac-input:focus {
+                border-color: #4d90fe;
+            }
+
+        #title {
+            color: #fff;
+            background-color: #4d90fe;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 6px 12px;
+        }
+
+        #target {
+            width: 345px;
+        }
+    </style>
+    <link href="~/Content/assets/dist/css/main.css" rel="stylesheet" />
+    <link href="~/Content/assets/dist/css/util.css" rel="stylesheet" />
+</head>
+<body class="skin-blue sidebar-mini">
+    <div id="cover-spin"></div>
+    <div class="wrapper">
+        <div id="header-data">
+            @Html.Action("Header", "Partials")
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.Action("AdminSideMenu", "Partials")
+        }
+        <div class="content-wrapper">
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+    <!-- jQuery 2.1.4 -->
+    <script src="~/Content/assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.4 -->
+    <script src="~/Content/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="~/Content/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/assets/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Content/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/Content/assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/Content/assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/assets/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/assets/dist/js/app.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="~/Content/assets/plugins/Toaster/toastr.min.js"></script>
+    <script src="~/Content/assets/plugins/select2/select2.full.js"></script>
+    <script src="~/Content/assets/dist/js/main.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- summernote rich text editor -->
+    <script src="~/Content/assets/plugins/summernote-0.8.18-dist/summernote.min.js"></script>
+    @*<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=@(System.Configuration.ConfigurationManager.AppSettings["GOOGLE_MAPS_KEY"])&callback=initAutocomplete&libraries=places&v=weekly"
+                defer></script>*@
+    @RenderSection("Scripts", false)
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("body").toggleClass('sidebar-open');
+            $("body").click(function (e) {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    if (e.target.className == "sidebar-toggle") {
+                        $(this).toggleClass('sidebar-open');
+                    }
+                    else {
+                        if (e.toElement.offsetParent.className.includes('treeview')) {
+                        }
+                        else {
+                            if (e.toElement.offsetParent != null && e.toElement.offsetParent.offsetParent != null && e.toElement.offsetParent.offsetParent.className != null && e.toElement.offsetParent.offsetParent.className.includes('treeview')) {
+                                //do nothing
+                            }
+                            else {
+                                $("body").addClass('sidebar-open');
+                            }
+                        }
+                    }
+                    $(".sidebar-toggle").click(false);
+                }
+            })
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // do nothing
+            }
+            else {
+                if (Notification.permission !== "granted" || Notification.permission === "denied") {
+                    Notification.requestPermission();
+                }
+            }
+
+            $('.rich-text-editor').summernote({
+                height: 500,                 // set editor height
+                focus: true                  // set focus to editable area after initializing summernote
+            });
+
+            $('[data-toggle="tooltip"]').tooltip()
+            $("#cover-spin").hide();
+            $('.select2').select2({
+                placeholder: 'اضغط للاختيار المتعدد',
+            });
+            $("form").submit(function () {
+                if ($(this).valid()) {
+                    $("#cover-spin").show();
+                }
+            })
+        })
+    </script>
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            $(function () {
+                toastr.success("تم بنجاح");
+            })
+        </script>
+    }
+    @*<script>
+            var tHub;
+            $(document).ready(function () {
+                tHub = $.connection.notificationHub;
+                $.connection.hub.start().done(function () {
+                    tHub.server.join();
+                    tHub.server.storeJoin();
+                });
+                tHub.client.notify = function (Body) {
+                    $.ajax({
+                        url: "@Url.Action("Header", "Partials")",
+                        type: "GET",
+                        success: function (results) {
+                            $("#header-data").empty();
+                            $("#header-data").html(results);
+                        }
+                    })
+                    NewNotificationToTheUser(Body);
+                }
+            });
+
+            function NewNotificationToTheUser(Body) {
+                let notification = new Notification(Body);
+            }
+        </script>*@
+</body>
+</html>
